@@ -23,7 +23,7 @@ public class ContinuousNumSum {
 		}
 		//第一个数字从1开始尝试,如果尝试失败开始递增,当这个数字>num/2时结束,返回false
 		int first = 1;
-		while(first < num/2) {
+		while(first <= num/2) {
 			int cur = first;
 			while(cur < num) {
 				num = num - cur;
@@ -34,6 +34,7 @@ public class ContinuousNumSum {
 				}
 			}
 			first++;
+			num = original;
 		}
 		return res;
 	}
@@ -44,23 +45,10 @@ public class ContinuousNumSum {
 	 * boolean
 	 */
 	public static boolean isContinuousNumSum2(int num) {
-		int original = num;
-		boolean res = false;
-		if(num <= 5) {
-			return res;
+		if(num <= 2) {
+			return false;
 		}
-		int begin = 6;
-		int step = 4;
-		for(;begin <= num;) {
-			if(num == begin) {
-				System.out.println("num==========" + original);
-				return true;
-			}
-			System.out.println("begin-----------"+begin + "step======="+step);
-			begin += step;
-			step ++;
-		}
-		return false;
+		return (num & (num-1)) != 0;
 		
 	}
 	public static void main(String[] args) {
